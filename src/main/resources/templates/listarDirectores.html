@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="layout/layout :: head"></head>
+<body>
+<nav th:replace="layout/layout :: navbar"></nav>
+<h1 class="page-content" th:text="${titulo}"></h1>
+<br/>
+<div class="container">
+    <table id="example" class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>documento</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Calificacion</th>
+            <th>Nombre Universidad</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="director: ${director}" th:if="${director.estado} == true">
+            <td th:text="${director.idDirector}"></td>
+            <td th:text="${director.documento}"></td>
+            <td th:text="${director.nombre}"></td>
+            <td th:text="${director.apellido}"></td>
+            <td th:text="${director.calificacion}"></td>
+            <td th:text="${director.idUniversidad.nombre}"></td>
+            <td><a th:href="@{/eliminarDirector/} + ${director.idDirector}" class="btn btn-danger btn-xs"
+                   th:text="'Eliminar'"
+                   onclick="return confirm
+                       ('¿Estas seguro de querer eliminar el registro?')"></a></td>
+            <td><a th:href="@{/cambiarEstadoDirector/} + ${director.idDirector}" class="btn btn-danger btn-xs"
+                   th:text="'EliminarEstado'"
+                   onclick="return confirm
+                       ('¿Estas seguro de querer eliminar el registro?')"></a></td>
+            <td><a th:href="@{/editarSeccional/{id}(id=${director.idDirector})}" class="btn btn-info btn-xs"
+                   th:text="'Editar'"></a></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/crearDirector.html}" class="btn btn-primary">Registrar director</a>
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
