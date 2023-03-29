@@ -87,6 +87,16 @@ public class UniversidadServiceImplement implements IuniversidadService{
     public universidadEntity findOne(Long id){
         return universidadDAO.findById(id).orElse(null);
     }
+
+    /**
+    * @Desc Este metodo es la implementacion del dao - update CrudRepositorys
+    * 1. @Transactional metodo con petición a BD
+    * 2. Realiza UPDATE en BD
+    * @CreateAt 05-03-2023
+    * @Version 0.0.1
+    * @Author Oscar Cardozo
+    * @Required Interfaz de Servicio
+    * */
     @Override
     @Transactional(readOnly = true)
     public universidadEntity selectOneUni(){
